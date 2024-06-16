@@ -11,7 +11,8 @@ namespace Beacons_of_the_Elements
             game.Start();
         }
     }
-    
+
+
     public class World
     {
         // Properties
@@ -27,6 +28,7 @@ namespace Beacons_of_the_Elements
             Village = new Location("Village", "A small village");
         }
     }
+
 
     public class Location
     {

@@ -10,6 +10,7 @@
         public bool IsDefending { get; private set; }
         public Location? CurrentLocation { get; private set; }
 
+
         public void Attack(Enemy enemy)
         {
             int damage = Math.Max(0, AttackPower - Defense);
@@ -18,11 +19,13 @@
             IsDefending = false;
         }
 
+
         public void Defend()
         {
             IsDefending = true;
             Console.WriteLine("You brace yourself for the next attack.");
         }
+
 
         public bool TryToFlee()
         {
@@ -31,6 +34,7 @@
             int roll = random.Next(100);
             return roll < fleeChance;
         }
+
 
         public void MoveTo(Location newLocation)
         {

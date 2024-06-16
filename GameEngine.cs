@@ -13,6 +13,7 @@
             world = new World();
         }
 
+
         public void Start()
         {
             Console.WriteLine("Game started");
@@ -41,6 +42,7 @@
                 }
             }
         }
+
 
         public static void StartCombat(Player player, Enemy enemy)
         {
@@ -95,10 +97,9 @@
             }
         }
 
-        private static void End()
-        {
-            Console.WriteLine("\nGame over!");
-        }
+
+        private static void End() => Console.WriteLine("\nGame over!");
+
 
         public static bool CheckForRandomEncounter()
         {
@@ -107,6 +108,7 @@
             int roll = random.Next(100);
             return roll < encounterChance;
         }
+
 
         public static Enemy GenerateRandomEnemy()
         {
