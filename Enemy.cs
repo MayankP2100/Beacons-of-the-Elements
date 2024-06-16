@@ -7,7 +7,8 @@
         public int Health { get; set; }
         public int AttackPower { get; set; }
         public int Defense { get; set; }
-
+        public int GoldDrop { get; internal set; }
+        public int ExperienceDrop { get; internal set; }
 
         public void Attack(Player player)
         {

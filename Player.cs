@@ -10,6 +10,8 @@ namespace Beacons_of_the_Elements
         public int Defense { get; set; } = 10;
         public int Mana { get; set; } = 50;
         public bool IsAlive { get; set;} = true;
+        public int Gold { get; set; } = 0;
+        public int Experience { get; set; } = 0;
 
         public bool IsDefending { get; private set; }
         public Location? CurrentLocation { get; private set; }
@@ -61,6 +63,14 @@ namespace Beacons_of_the_Elements
             int fleeChance = 50;
             int roll = random.Next(100);
             return roll < fleeChance;
+        }
+
+
+        public void ReceiveReward(Enemy enemy)
+        {
+            Gold += enemy.GoldDrop;
+            Experience += enemy.ExperienceDrop;
+            Console.WriteLine($"You receive {enemy.GoldDrop} gold and {enemy.ExperienceDrop} experience!");
         }
 
 

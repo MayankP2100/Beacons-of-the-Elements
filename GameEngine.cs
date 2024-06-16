@@ -101,6 +101,7 @@
                 if (enemy.Health <= 0)
                 {
                     Console.WriteLine($"You defeated the {enemy.Name}!");
+                    player.ReceiveReward(enemy);
                     return;
                 }
                 else if (player.Health <= 0)
@@ -136,12 +137,16 @@
             int health = random.Next(50, 101);
             int attackPower = random.Next(10, 21);
             int defense = random.Next(5, 16);
+            int goldDrop = random.Next(10, 21);
+            int experienceDrop = random.Next(20, 41);
             return new Enemy
             {
                 Name = name,
                 Health = health,
                 AttackPower = attackPower,
-                Defense = defense
+                Defense = defense,
+                GoldDrop = goldDrop,
+                ExperienceDrop = experienceDrop
             };
         }
     }
