@@ -84,6 +84,7 @@ namespace Beacons_of_the_Elements
             Gold += enemy.GoldDrop;
             Experience += enemy.ExperienceDrop;
             Console.WriteLine($"You receive {enemy.GoldDrop} gold and {enemy.ExperienceDrop} experience!");
+            Mana = 50;
         }
 
 
