@@ -3,8 +3,8 @@
     public class GameEngine
     {
         // Properties
-        private Player player;
-        private World world;
+        private readonly Player player;
+        private readonly World world;
 
         // Constructor
         public GameEngine()
@@ -18,13 +18,19 @@
         {
             Console.WriteLine("Game started");
             Console.WriteLine("You find yourself in a village. Where would you like to go?");
+            Console.WriteLine("'i' to view your stats.");
             Console.WriteLine("1. The Forest\n2. The Cave\n3. Stay in the Village");
 
             while (player.IsAlive)
             {
                 Console.WriteLine();
                 string? input = Console.ReadLine();
-                if (input == "1")
+
+                if (input == "i")
+                {
+                    player.DisplayPlayerStats();
+                }
+                else if (input == "1")
                 {
                     player.MoveTo(world.Forest);
                 }

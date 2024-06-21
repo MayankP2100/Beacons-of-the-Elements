@@ -16,6 +16,18 @@ namespace Beacons_of_the_Elements
         public bool IsDefending { get; private set; }
         public Location? CurrentLocation { get; private set; }
 
+        
+        public void DisplayPlayerStats()
+        {
+            Console.WriteLine("Player stats:");
+            Console.WriteLine($"Health: {Health}");
+            Console.WriteLine($"Attack Power: {AttackPower}");
+            Console.WriteLine($"Defense: {Defense}");
+            Console.WriteLine($"Mana: {Mana}");
+            Console.WriteLine($"Gold: {Gold}");
+            Console.WriteLine($"Experience: {Experience}");
+        }
+
 
         public void Attack(Enemy enemy)
         {
@@ -31,6 +43,7 @@ namespace Beacons_of_the_Elements
             Console.WriteLine($"You attack the {enemy.Name} for {damage} damage!");
             IsDefending = false;
         }
+
 
         private bool CheckForCriticalHit()
         {
