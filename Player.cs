@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Numerics;
 
 namespace Beacons_of_the_Elements
 {
@@ -6,22 +7,27 @@ namespace Beacons_of_the_Elements
     {
         // Properties
         public int Health { get; set; } = 50;
-        public int AttackPower { get; set; } = 30;
+        public int AttackDamage { get; set; } = 30;
+        public int Power { get; set; } = 10;
         public int Defense { get; set; } = 10;
         public int Mana { get; set; } = 50;
         public bool IsAlive { get; set;} = true;
         public int Gold { get; set; } = 0;
         public int Experience { get; set; } = 0;
+        public int Level { get; set; } = 1;
 
         public bool IsDefending { get; private set; }
         public Location? CurrentLocation { get; private set; }
 
-        
+        private int rng = new Random().Next(0, 8);
+
+
         public void DisplayPlayerStats()
         {
             Console.WriteLine("Player stats:");
             Console.WriteLine($"Health: {Health}");
-            Console.WriteLine($"Attack Power: {AttackPower}");
+            Console.WriteLine($"AttackDamage: {Attack}");
+            Console.WriteLine($"Power: {Power}");
             Console.WriteLine($"Defense: {Defense}");
             Console.WriteLine($"Mana: {Mana}");
             Console.WriteLine($"Gold: {Gold}");
@@ -32,15 +38,20 @@ namespace Beacons_of_the_Elements
         public void Attack(Enemy enemy)
         {
             bool isCritical = CheckForCriticalHit();
-            int damage = AttackPower - Defense;
+            int baseDamage = AttackDamage +
+                ((AttackDamage + Level) / 32) *
+                ((AttackDamage * Level) / 32);
+            int maxDamage = ((Power * (512 - Defense) * baseDamage) / (16 * 512));
+            int actualDamage = maxDamage * rng * (3841 + rng) / 4096;
+
             if (isCritical)
             {
-                damage *= 2;
+                actualDamage *= 2;
                 Console.WriteLine("Critical hit!");
             }
-            damage = Math.Max(1, damage);
-            enemy.Health -= damage;
-            Console.WriteLine($"You attack the {enemy.Name} for {damage} damage!");
+            actualDamage = Math.Max(1, actualDamage);
+            enemy.Health -= actualDamage;
+            Console.WriteLine($"You attack the {enemy.Name} for {actualDamage} damage!");
             IsDefending = false;
         }
 
